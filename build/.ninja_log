@@ -1,0 +1,10 @@
+# ninja log v6
+36	42	1769812713788337527	CMakeFiles/Calcolatrice.dir/CXXModules.json	3dbc834befa10704
+1	36	1769812713753335997	CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.ddi	431c3bf27450b7dd
+36	42	1769812713788337527	CMakeFiles/Calcolatrice.dir/main.cpp.o.modmap	3dbc834befa10704
+36	42	1769812713788337527	CMakeFiles/Calcolatrice.dir/CXX.dd	3dbc834befa10704
+1	32	1769810726324820684	CMakeFiles/Calcolatrice.dir/main.cpp.o.ddi	3a0337cd41cc0417
+1251	1381	1769812715002390615	Calcolatrice	b108332275acf170
+36	42	1769812713788337527	CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.modmap	3dbc834befa10704
+40	530	1769810726364787177	CMakeFiles/Calcolatrice.dir/main.cpp.o	64676682c3fe12ef
+42	1251	1769812713794464948	CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o	cf888ea619e99019
