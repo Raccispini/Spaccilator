@@ -6,8 +6,8 @@
 
 
 int main() {
-  std::string input;
-  std::getline(std::cin, input);
+  std::string input = "223+5 6 6-3";
+  //std::getline(std::cin, input);
   Lexer lexer(input);
   std::vector<Token> tokens = lexer.parse();
   for (Token t : tokens){

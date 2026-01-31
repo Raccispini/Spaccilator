@@ -14,8 +14,10 @@ public:
 
 
 enum class TokenType {
-  Number,
-  Operator
+  NUMBER,
+  OPERATOR,
+  INVALID,
+  END_TOKEN
 };
 
 class Token {
@@ -35,7 +37,7 @@ class Lexer {
     char peek() const;    // guarda il carattere attuale senza avanzare
     char peekNext() const; // guarda il carattere dopo quello attuale
     bool match(char expected); // avanza solo se il carattere e' quello cercato
-    std::expected<Token,std::string> generate_token(std::string str);
+    Token generate_token(std::string str);
     public:
     Lexer(std::string_view src);
     std::vector<Token> parse();
