@@ -1,4 +1,4 @@
-#include "Parser.hpp"
+#include "Lexer.hpp"
 #include <cctype>
 #include <iostream>
 #include <string>
@@ -6,12 +6,6 @@
 #include <regex>
 #include <expected>
 #include <cstdlib>
-
-
-Parser::Parser(std::string s) : m_stringa(s) {
-  std::cout << "Parser inizializzato con stringa " << m_stringa << " !"
-            << std::endl;
-}
 
 Token::Token(TokenType type,std::variant<std::string,float> value) :m_type(type),m_value(value){};
 
@@ -39,7 +33,6 @@ bool Lexer::match(char expected) {
   return true;
 }
 Token Lexer::generate_token(std::string str) {
-  std::cout<<"Input stringa "<<str<<std::endl;
   std::regex number_pattern(R"(\d+([.,]\d*)?)");
   // controllo se e' un operatore
   if (str.length()==1){
@@ -70,7 +63,6 @@ std::vector<Token> Lexer::parse(){
   std::string buffer = "";
   std::vector<Token> tokens;
   //regex patterns
-  std::cout <<source<<std::endl;
   while(!isAtEnd()){
     //char next = peekNext();
     char actual = peek();
@@ -109,5 +101,5 @@ std::vector<Token> Lexer::parse(){
   }
   Token token(TokenType::END_TOKEN,"END");
   tokens.push_back(token);
-return tokens;
+  return tokens;
 }

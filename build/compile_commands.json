@@ -7,8 +7,8 @@
 },
 {
   "directory": "/home/racci/Documents/cpp_projects/Calcolatrice/build",
-  "command": "/usr/bin/clang++ -I/home/racci/Documents/cpp_projects/Calcolatrice/include -g -std=gnu++23 -Wall -Wextra @CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.modmap -o CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o -c /home/racci/Documents/cpp_projects/Calcolatrice/src/Parser.cpp",
-  "file": "/home/racci/Documents/cpp_projects/Calcolatrice/src/Parser.cpp",
-  "output": "/home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o"
+  "command": "/usr/bin/clang++ -I/home/racci/Documents/cpp_projects/Calcolatrice/include -g -std=gnu++23 -Wall -Wextra @CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o.modmap -o CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o -c /home/racci/Documents/cpp_projects/Calcolatrice/src/Lexer.cpp",
+  "file": "/home/racci/Documents/cpp_projects/Calcolatrice/src/Lexer.cpp",
+  "output": "/home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o"
 }
 ]

@@ -3,15 +3,6 @@
 #include <variant>
 #include <vector>
 #include <expected>
-class Parser {
-private:
-  std::string m_stringa;
-
-public:
-  Parser(std::string s);
-  void print();
-};
-
 
 enum class TokenType {
   NUMBER,
