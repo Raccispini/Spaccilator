@@ -1,0 +1,3 @@
+/home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/Calcolatrice.dir
+/home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/edit_cache.dir
+/home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/rebuild_cache.dir
