@@ -30,6 +30,11 @@
 		{
 			"language" : "CXX",
 			"source" : "/home/racci/Documents/cpp_projects/Calcolatrice/src/Lexer.cpp"
+		},
+		"CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/home/racci/Documents/cpp_projects/Calcolatrice/src/Parser.cpp"
 		}
 	}
 }

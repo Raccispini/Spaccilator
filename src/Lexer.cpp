@@ -7,7 +7,7 @@
 #include <expected>
 #include <cstdlib>
 
-Token::Token(TokenType type,std::variant<std::string,float> value) :m_type(type),m_value(value){};
+Token::Token(TokenType type,std::variant<std::string,double> value) :m_type(type),m_value(value){};
 
 Lexer::Lexer(std::string_view src ): source(src){};
 

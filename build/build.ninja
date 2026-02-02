@@ -87,7 +87,26 @@ build CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o: CXX_COMPILER__Calcolatrice_sc
   TARGET_SUPPORT_DIR = CMakeFiles/Calcolatrice.dir
   dyndep = CMakeFiles/Calcolatrice.dir/CXX.dd
 
-build CMakeFiles/Calcolatrice.dir/CXX.dd | CMakeFiles/Calcolatrice.dir/CXXModules.json CMakeFiles/Calcolatrice.dir/main.cpp.o.modmap CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o.modmap: CXX_DYNDEP__Calcolatrice_Debug CMakeFiles/Calcolatrice.dir/main.cpp.o.ddi CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o.ddi | /home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/Calcolatrice.dir/CXXDependInfo.json
+build CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.ddi: CXX_SCAN__Calcolatrice_Debug /home/racci/Documents/cpp_projects/Calcolatrice/src/Parser.cpp || cmake_object_order_depends_target_Calcolatrice
+  DEP_FILE = CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.ddi
+  FLAGS = -g -std=gnu++23 -Wall -Wextra
+  INCLUDES = -I/home/racci/Documents/cpp_projects/Calcolatrice/include
+  OBJ_FILE = CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.ddi.i
+
+build CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o: CXX_COMPILER__Calcolatrice_scanned_Debug /home/racci/Documents/cpp_projects/Calcolatrice/src/Parser.cpp | CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.modmap || cmake_object_order_depends_target_Calcolatrice CMakeFiles/Calcolatrice.dir/CXX.dd
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.modmap
+  FLAGS = -g -std=gnu++23 -Wall -Wextra
+  INCLUDES = -I/home/racci/Documents/cpp_projects/Calcolatrice/include
+  OBJECT_DIR = CMakeFiles/Calcolatrice.dir
+  OBJECT_FILE_DIR = CMakeFiles/Calcolatrice.dir/src
+  TARGET_SUPPORT_DIR = CMakeFiles/Calcolatrice.dir
+  dyndep = CMakeFiles/Calcolatrice.dir/CXX.dd
+
+build CMakeFiles/Calcolatrice.dir/CXX.dd | CMakeFiles/Calcolatrice.dir/CXXModules.json CMakeFiles/Calcolatrice.dir/main.cpp.o.modmap CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o.modmap CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.modmap: CXX_DYNDEP__Calcolatrice_Debug CMakeFiles/Calcolatrice.dir/main.cpp.o.ddi CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o.ddi CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o.ddi | /home/racci/Documents/cpp_projects/Calcolatrice/build/CMakeFiles/Calcolatrice.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -97,7 +116,7 @@ build CMakeFiles/Calcolatrice.dir/CXX.dd | CMakeFiles/Calcolatrice.dir/CXXModule
 #############################################
 # Link the executable Calcolatrice
 
-build Calcolatrice: CXX_EXECUTABLE_LINKER__Calcolatrice_Debug CMakeFiles/Calcolatrice.dir/main.cpp.o CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o
+build Calcolatrice: CXX_EXECUTABLE_LINKER__Calcolatrice_Debug CMakeFiles/Calcolatrice.dir/main.cpp.o CMakeFiles/Calcolatrice.dir/src/Lexer.cpp.o CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o
   CONFIG = Debug
   DEP_FILE = CMakeFiles/Calcolatrice.dir/link.d
   FLAGS = -g
