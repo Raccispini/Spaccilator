@@ -14,8 +14,8 @@ enum class TokenType {
 class Token {
   public:
     TokenType m_type;
-    std::variant<std::string,double> m_value;
-    Token(TokenType type,std::variant<std::string,double> value);
+    std::string m_value;
+    Token(TokenType type,std::string value);
 };
 
 class Lexer {

@@ -8,11 +8,11 @@ class Parser {
         bool match(TokenType type); //controlla se l'attuale token e' di quel tipo
         Token previous(); // restituisce il token precedente
         Token advance(); // manda avanti il cursore dei token
-        
-        double parseTerm();
+        bool isEnd();
+        std::variant<double,std::string> parseTerm();
         double parseExpression();
         double parseFactor();        
-
+        void printTokens();
     public:
         Parser(std::string);
         double parse();

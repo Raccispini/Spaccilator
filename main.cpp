@@ -4,7 +4,8 @@
 
 
 int main() {
-  std::string input = "223+5 6 6-3";
+  std::string input ;//= "23+5-20";
+  std::getline(std::cin,input);
   Parser parser(input);
   std::cout<<parser.parse()<<std::endl;
   return 0;
