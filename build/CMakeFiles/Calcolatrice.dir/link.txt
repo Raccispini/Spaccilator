@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Calcolatrice.dir/link.d CMakeFiles/Calcolatrice.dir/main.cpp.o CMakeFiles/Calcolatrice.dir/src/Engine.cpp.o CMakeFiles/Calcolatrice.dir/src/Parser.cpp.o -o Calcolatrice
