@@ -12,9 +12,41 @@ Parser::Parser(std::string src): source(src){
     tokens = lex.parse();
 };
 
-double Parser::parse(){
+double Parser::parse() {
     //printTokens();
-    return parseExpression();
+    // se left e' op -> errore
+    std::variant<double,std::string> term =  parseTerm();
+    if (std::holds_alternative<std::string>(term)){    // se e' un carattere a sinistra non puo' essere
+        //std::cout<<std::get<std::string>(term)<<std::endl;
+        throw std::runtime_error("ERROR: Malformed String : a sinistra vanno i numeri");
+    }
+    double left = std::get<double>(term); //safe
+    if (isEnd()) return left;
+    while(!isEnd()){
+        // controlla la prossima OP
+        term = parseTerm();
+        if (std::holds_alternative<double>(term)){    // se e' un carattere a sinistra non puo' essere
+            throw std::runtime_error("ERROR: Malformed String: al centro vanno gli operatori");
+        }
+        char op = std::get<std::string>(term)[0];
+        term = parseTerm();
+        if (std::holds_alternative<std::string>(term)){    // se e' un carattere a sinistra non puo' essere
+            //std::cout<<std::get<std::string>(term)<<std::endl;
+            throw std::runtime_error("ERROR: Malformed String : a sinistra vanno i numeri");
+        }
+        double right = std::get<double>(term);
+        switch (op){
+            case '+': {
+                left+=right;
+                break;
+            }
+            case '-':{
+                left-=right;
+                break;
+            }
+        }   
+    }
+    return left;
 }
 // Espressioni: VAL | VAL OP ESP 
 double Parser::parseExpression(){
