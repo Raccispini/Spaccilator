@@ -47,6 +47,14 @@ Token Lexer::generate_token(std::string str) {
     Token token(TokenType::NUMBER,str);
     return token;
   }
+  if (str=="("){
+    Token token(TokenType::OPEN_PARENTHESIS,str);
+    return token;
+  }
+  if (str==")"){
+    Token token(TokenType::CLOSED_PARENTHESIS,str);
+    return token;
+  }
   Token token(TokenType::INVALID,str);
   return token;
 }
@@ -71,7 +79,7 @@ std::vector<Token> Lexer::parse(){
       buffer+=actual;
     }
     // se e' un simbolo (+,-,*,/) carica il buffer in token e aggiunge al buffer il simbolo
-    if (actual=='+'||actual=='-'||actual=='*'||actual=='/'){
+    if (actual=='+'||actual=='-'||actual=='*'||actual=='/'||actual=='('||actual==')'){
       if (buffer.length()!=0){
         Token token = generate_token(buffer);
         tokens.push_back(token);

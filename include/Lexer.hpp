@@ -8,6 +8,8 @@ enum class TokenType {
   NUMBER,
   OPERATOR,
   INVALID,
+  OPEN_PARENTHESIS,
+  CLOSED_PARENTHESIS,
   END_TOKEN
 };
 

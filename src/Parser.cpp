@@ -6,7 +6,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
-
+#include <stack>
 Parser::Parser(std::string src): source(src){
     Lexer lex(source);
     tokens = lex.parse();
@@ -15,26 +15,54 @@ Parser::Parser(std::string src): source(src){
 double Parser::parse() {
     //printTokens();
     // se left e' op -> errore
-    std::variant<double,std::string> term =  parseTerm();
-    if (std::holds_alternative<std::string>(term)){    // se e' un carattere a sinistra non puo' essere
-        //std::cout<<std::get<std::string>(term)<<std::endl;
-        throw std::runtime_error("ERROR: Malformed String : a sinistra vanno i numeri");
+    Token term =  advance();
+    double left;
+    switch(term.m_type){
+        case (TokenType::NUMBER) :{
+            left = std::stod(term.m_value);
+            break;
+        }
+        case (TokenType::OPEN_PARENTHESIS):{
+            left = parse();
+            break;
+        }
+        default:{
+            throw std::runtime_error("ERROR: Malformed String: parte sinistra");
+        }
     }
-    double left = std::get<double>(term); //safe
+    
     if (isEnd()) return left;
     while(!isEnd()){
         // controlla la prossima OP
-        term = parseTerm();
-        if (std::holds_alternative<double>(term)){    // se e' un carattere a sinistra non puo' essere
-            throw std::runtime_error("ERROR: Malformed String: al centro vanno gli operatori");
+        term = advance();
+        char op;
+        switch(term.m_type){
+            case (TokenType::OPERATOR) :{
+                op = term.m_value[0];
+                break;
+            }
+            case (TokenType::CLOSED_PARENTHESIS):{
+                return left;
+            }
+            default:{
+                throw std::runtime_error("ERROR: Malformed String: parte centrale");
+            }
         }
-        char op = std::get<std::string>(term)[0];
-        term = parseTerm();
-        if (std::holds_alternative<std::string>(term)){    // se e' un carattere a sinistra non puo' essere
-            //std::cout<<std::get<std::string>(term)<<std::endl;
-            throw std::runtime_error("ERROR: Malformed String : a sinistra vanno i numeri");
+        term = advance();
+        double right;
+        switch(term.m_type){
+            case (TokenType::NUMBER) :{
+                right = std::stod(term.m_value);
+                break;
+            }
+            case (TokenType::OPEN_PARENTHESIS):{
+                right = parse();
+                break;
+            }
+            default:{
+                throw std::runtime_error("ERROR: Malformed String: parte destra");
+            }
         }
-        double right = std::get<double>(term);
         switch (op){
             case '+': {
                 left+=right;
@@ -44,49 +72,88 @@ double Parser::parse() {
                 left-=right;
                 break;
             }
+            case '*':{
+                left*=right;
+                break;
+            }
+            case '/':{
+                left/=right;
+                break;
+            }
+
         }   
     }
     return left;
 }
 // Espressioni: VAL | VAL OP ESP 
 double Parser::parseExpression(){
+    //printTokens();
     // se left e' op -> errore
-    std::variant<double,std::string> term =  parseTerm();
-    if (std::holds_alternative<std::string>(term)){    // se e' un carattere a sinistra non puo' essere
-        //std::cout<<std::get<std::string>(term)<<std::endl;
-        throw std::runtime_error("ERROR: Malformed String : a sinistra vanno i numeri");
-    }
-    double left = std::get<double>(term); //safe
-    if (isEnd()){
-        return left;
-    }
-    // controlla la prossima OP
-    term = parseTerm();
-    if (std::holds_alternative<double>(term)){    // se e' un carattere a sinistra non puo' essere
-        throw std::runtime_error("ERROR: Malformed String: al centro vanno gli operatori");
-    }
-    char op = std::get<std::string>(term)[0];
-    double right = parseExpression();
-    switch (op){
-        case '+': {
-            left+=right;
+    Token term =  advance();
+    double left;
+    switch(term.m_type){
+        case (TokenType::NUMBER) :{
+            left = std::stod(term.m_value);
             break;
         }
-        case '-':{
-            left-=right;
+        case (TokenType::OPEN_PARENTHESIS):{
+            left = parseExpression();
             break;
         }
-        case '*':{
-            left*=right;
-            break;
+        default:{
+            throw std::runtime_error("ERROR: Malformed String: al centro vanno gli operatori");
         }
-        case '/':{
-            left/=right;
-            break;
-        }
-        return left;
     }
-    //valuta il prossimo token come parsExpression
+    if (isEnd()) return left;
+    while(!isEnd()){
+        // controlla la prossima OP
+        term = advance();
+        char op;
+        switch(term.m_type){
+            case (TokenType::OPERATOR) :{
+                op = term.m_value[0];
+                break;
+            }
+            case (TokenType::CLOSED_PARENTHESIS):{
+                return left;
+            }
+            default:{
+                throw std::runtime_error("ERROR: Malformed String: al centro vanno gli operatori");
+            }
+        }
+        
+        term = advance();
+        double right;
+        switch(term.m_type){
+            case (TokenType::NUMBER) :{
+                right = std::stod(term.m_value);
+                break;
+            }
+            case (TokenType::OPEN_PARENTHESIS):{
+                right = parseExpression();
+                break;
+            }
+            default:{
+                throw std::runtime_error("ERROR: Malformed String: al centro vanno gli operatori");
+            }
+        }
+        switch (op){
+            case '+': {
+                left+=right;
+                break;
+            }
+            case '-':{
+                left-=right;
+                break;
+            }
+            case '*':{
+                left*=right;
+            }
+            case '/':{
+                left/=right;
+            }
+        }   
+    }
     return left;
 }
 
@@ -109,7 +176,8 @@ bool Parser::match(TokenType type){
 }
 
 Token Parser::previous(){
-    return tokens[cursor-1];
+    if (cursor == 0) return tokens[cursor];
+    return tokens[cursor--];
 }
 Token Parser::advance(){
     return tokens[cursor++];
@@ -126,3 +194,14 @@ void Parser::printTokens(){
         std::cout<<"Type: "<< static_cast<int>(t.m_type)<<"\t Value: "<<t.m_value<<std::endl;
     }
 }
+
+int opPriority(char op){
+    if(op == '+'|| op == '-'){
+        return 1;
+    }
+    if (op == '*'||op == '/'){
+        return 2;
+    }
+    return 0;
+}
+

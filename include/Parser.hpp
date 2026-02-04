@@ -13,6 +13,7 @@ class Parser {
         double parseExpression();
         double parseFactor();        
         void printTokens();
+        int opPriority(char op);
     public:
         Parser(std::string);
         double parse();
